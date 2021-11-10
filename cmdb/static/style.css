@@ -5,11 +5,18 @@
   }
   
  
+  
+
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
   ::-webkit-scrollbar-track {
     border-radius: 10px;
   }
    
- 
+  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: rgb(247, 171, 72); 
     border-radius: 10px;
@@ -19,7 +26,6 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #ee128b; 
   }
-  
   .movie {
       color: rgb(243, 81, 81);
       margin-left: auto;
@@ -111,8 +117,11 @@ h1 {
 }
 
 #name {
-    color: rgb(0, 0, 0);
+    color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
     padding: 1px;
+    font-weight: bold;
 }
 
 h6 {
@@ -311,5 +320,4 @@ h6 {
     text-transform: uppercase;
 
 }
-
 
