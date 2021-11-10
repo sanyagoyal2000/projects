@@ -21,13 +21,13 @@
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #e50914; 
-    border-radius: 10px;
+    background: #EAEDED; 
+    border-radius: 0px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #b30000; 
+    background: #CCD1D1; 
   }
   
   .movie {
@@ -115,8 +115,11 @@ h1 {
 }
 
 #name {
-    color: rgb(0, 0, 0);
+    color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
     padding: 1px;
+    font-weight: bold;
 }
 
 h6 {
@@ -285,4 +288,5 @@ h6 {
 
 .movie_title {
     font-size: 40px;
+    /*color: #ffffff;*/
 }
