@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block body %}
+<script type="text/javascript">
+    var films = {{ suggestions | tojson}}
+</script>
+<br>
+<div class="ml-container" style="display: block;">
+        <h1 id="heading">
+            <center>TMDBD-The Movie Recommender System</center>
+        </h1>
+
+    <div class="d-flex align-items-center justify-content-center" style=" margin-top: 100px; text-align: center;">
+        <form class="navbar-form navbar-left col-md-8 ">
+            <input type="text" name="movie" class="movie form-control col-lg-8 movie_input" id="autoComplete" autocomplete="off" placeholder="Type a Movie Name" required="required" style="border-color: #6d0000; width: 60%; margin: auto; color: #000 " />
+            <div class="d-flex align-items-center justify-content-center" style="padding-top: 20px;">
+                <button type="button" class="btn btn-primary btn-lg movie-button">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="results">
+    <center>
+        <h2 id='name' class="text-uppercase"></h2>
+    </center>
+</div>
+
+
+<div class='fail'>
+    <center>
+        <h3>
+            Sorry! Requested movie is not present in our database. Check the spelling or try other movie.
+        </h3>
+    </center>
+</div>
+
+<div id="loader" class="text-center"></div>
+
+<!--Must be here-->
+<!-- Auto Complete -->
+<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='autocomplete.js') }}"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+
+
+{% endblock %} {% block script %} {%endblock%}
