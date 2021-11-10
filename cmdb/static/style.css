@@ -1,40 +1,34 @@
-.movie_input {
-    margin-left: auto;
-    margin-right: auto;
-    resize: none;
-}
 
 
-/* input.movie_input {
-	color: #000000;
-	border_color: #000000;
-	width: 60%;
-} */
 ::-webkit-scrollbar {
     width: 15px;
   }
   
-  /* Track */
+ 
   ::-webkit-scrollbar-track {
     border-radius: 10px;
   }
    
-  /* Handle */
+ 
   ::-webkit-scrollbar-thumb {
-    background: #e50914; 
+    background: rgb(247, 171, 72); 
     border-radius: 10px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #b30000; 
+    background: #ee128b; 
   }
   
   .movie {
-      color: #fff;
+      color: rgb(243, 81, 81);
       margin-left: auto;
       margin-right: auto;
       resize: none;
+      font-family: 'Assistant', sans-serif;
+      text-decoration: bold;
+      text-shadow: 0.5px 0.5px rgb(247, 242, 242);
+
   }
   
   .movie-content {
@@ -53,6 +47,8 @@
     margin-left: auto;
     margin-right: auto;
     color: #e4e0e0;
+    border-radius: 35px;
+    box-shadow: 5px 10px rgb(247, 243, 243);
 }
 
 #content {
@@ -122,13 +118,36 @@ h1 {
 h6 {
     margin-bottom: 20px;
 }
-
-@media only screen and (max-width: 650px) {
+.poster-lg:hover img {
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+    cursor: pointer;
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@media only screen and (max-width: 400px) {
     #mcontent {
-        display: block;
+      display: block;
     }
     .poster-lg {
-        display: none;
+      display: none;
+      cursor: pointer;
+
     }
     #details {
         margin-left: 30px;
@@ -137,11 +156,12 @@ h6 {
         display: none;
         position: fixed;
         z-index: 100;
+        background-image: url("../static/load.gif");
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        background-image: url("../static/loading-1.gif");
+        background-color: #e4e0e0;
         background-size: 40%;
         background-position: 50% 50%;
         background-color: rgba(255, 255, 255, 1);
@@ -162,7 +182,7 @@ h6 {
     }
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 800px) {
     .modal-body {
         display: block;
     }
@@ -196,7 +216,7 @@ h6 {
         top: 0;
         width: 100%;
         height: 100%;
-        background-image: url("../static/loader.gif");
+        background-image: url("../static/load.gif");
         background-size: 20%;
         background-position: 50% 50%;
         background-color: rgba(255, 255, 255, 1);
@@ -210,64 +230,66 @@ h6 {
     }
 }
 
-.poster {
-    -webkit-box-shadow: 0px 1px 15px 4px rgba(250, 250, 250, 1);
-    -moz-box-shadow: 0px 1px 15px 4px rgba(250, 250, 250, 1);
-    box-shadow: 0px 1px 15px 4px rgba(250, 250, 250, 1);
+.poster{
+    -webkit-box-shadow: 0px 1px 15px 4px rgba(250,250,250,1);
+    -moz-box-shadow: 0px 1px 15px 4px rgba(250,250,250,1);
+    box-shadow: 0px 1px 15px 4px rgba(250,250,250,1);
 }
 
 .card:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
-.castcard:hover {
+
+.cast-card:hover {
     cursor: pointer;
 }
 
 .cast-img {
-    filter: brightness(100%);
-    -moz-transition: all 0.75s ease;
+	filter: brightness(100%);
+	-moz-transition: all 0.75s ease;
     -webkit-transition: all 0.75s ease;
-    transition: all 0.75s ease;
+	transition: all 0.75s ease;
 }
 
+
 .cast-img:hover {
-    filter: brightness(50%);
-    -moz-transition: all 0.75s ease;
+	filter: brightness(50%);
+	-moz-transition: all 0.75s ease;
     -webkit-transition: all 0.75s ease;
     transition: all 0.75s ease;
 }
 
 .fig {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: brightness(50%);
-    position: absolute;
-    bottom: 0px;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    opacity: 0;
-    -moz-transition: all 0.75s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backdrop-filter: brightness(50%);
+	position: absolute;
+	bottom: 0px;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	opacity: 0;
+	-moz-transition: all 0.75s ease;
     -webkit-transition: all 0.75s ease;
     transition: all 0.75s ease;
 }
 
 .fig:hover {
-    opacity: 1;
-    backdrop-filter: br;
-    -moz-transition: all 0.75s ease;
+	opacity: 1;
+	backdrop-filter:br;
+	-moz-transition: all 0.75s ease;
     -webkit-transition: all 0.75s ease;
     transition: all 0.75s ease;
 }
 
 .card-btn {
-    border-radius: 20px;
+	border-radius: 20px;
 }
 
 .imghvr {
-    position: relative;
+	position: relative;
 }
 
 .table td {
@@ -281,8 +303,13 @@ h6 {
     color: rgb(51, 50, 50);
     font-family: 'Fjalla One', sans-serif;
 }
+.movie_title{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px rgba(255, 255, 255, 0.932);
+    font-size: 50px;
+    text-transform: uppercase;
 
-
-.movie_title {
-    font-size: 40px;
 }
+
+

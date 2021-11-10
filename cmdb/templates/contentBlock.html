@@ -19,7 +19,7 @@
 <br>
 <div class='results'>
     <center>
-        <h2 id="name" class="text-uppercase movie_title">{{ title }}</h2>
+        <h2 id="name" class="movie_title">{{ title }}</h2>
     </center>
 </div>
 <br>
@@ -36,7 +36,7 @@
             <br>
             <h6 id="overview">
                 <b>Overview:</b>
-                <br>&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                 &nbsp;
                 {{ overview }}
             </h6>
             <br>
@@ -159,14 +159,14 @@
     {% endfor %}
 
 
-
+<br><br>
 {% if casts|length > 1 %}
-<div class="movie" style="color: #000000;">
+<span class="movie">
     <center>
-        <h3>TOP CAST</h3>
-        <h5>(Click on the cast to know more)</h5>
+        <h3 style="font-weight: bold  text-shadow:1px 1px white;">TOP CAST</h3>
+        <h5 style="font-weight: bold">(Click on the cast to know more)</h5>
     </center>
-</div>
+</span>
 <div class="movie-content">
     {% for name, details in casts.items() if not casts.hidden %}
     <div class="castcard card" style="width: 15rem;" title="Click to know more about {{ name }}" data-toggle="modal" data-target="#{{ details[0] }}">
@@ -190,14 +190,15 @@
 </div>
 {% endif %}
 
+<br><br>
 
 {% if movie_cards | length >1 %}
-<div class="movie" style="color: #000000;">
+<span class="movie">
     <center>
-        <h3>RECOMMENDED MOVIES</h3>
-        <h5>(Click on a movie to get recommendations)</h5>
+        <h3 style="font-weight: bold;">RECOMMENDED MOVIES</h3>
+        <h5 style="font-weight: bold;">(Click on a movie to get recommendations)</h5>
     </center>
-</div>
+</span>
 <div class="movie-content">
     {% for poster, title in movie_cards.items() if not movie_cards.hidden %}
     <div class="card" style="width:15rem;" title="{{title}}" onclick="recommendcard(this)">
