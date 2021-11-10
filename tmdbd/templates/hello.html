@@ -68,63 +68,82 @@
 {% endif %}
 <center>
     {% if reviews %}
-    <h2 style="color:white">USER REVIEWS</h2>
-    <div class="col-md-12" style="margin: 0 auto; margin-top:25px;">
+    <h2 style="font-family: 'Rowdies', cursive;color:white">USER REVIEWS</h2>
+     <div class="col-md-12" style="margin: 0 auto; margin-top:25px;">
         <table class="table table-bordered" bordercolor="white" style="color:white">
-            <thread>
+            <thead>
                 <tr>
-                    <th class="text-center" scope="col" style="width: 75%">Comments</th>
-                    <th class="text-center" scope="col"> Sentiments </th>
+                  <th class="text-center" scope="col" style="width: 75%">Comments</th>
+                  <th class="text-center" scope="col">Sentiments</th>
                 </tr>
-            </thread>
-            <tbody>
-                {% for reviews, status in reviews.items() if not reviews.hidden %}
-                <tr style="background-color: #e5091485;">
-                    <td>{{review}}</td>
-                    <td>
-                        <center>
-                            {{status}}:
-                            {% if status == 'Good' %}
-                            &#128534;
-                            {% else %}
-                            &#128534;
-                            {% endif %}
-                        </center>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            </thead>
+    
+          <tbody>
+	    {% for review, status in reviews.items() if not reviews.hidden %}
+    	        <tr style="background-color:#e5091485;">
+                <td>{{review}}</td>
+                <td>
+                  <center>
+                    {{status}} : 
+                    {% if status =='Positive' %}
+                      &#128515;
+                    {% else %}
+                      &#128534;
+                    {% endif %}
+                  </center>
+                </td>
+            	</tr>
+      	    {% endfor %}
+    		  </tbody>
+ 		    </table>
+     </div>
+
+    {% if (curr_date) and (movie_rel_date) %}
+      {% elif curr_date < movie_rel_date %}
+      <div style="color:white;">
+        <h1 style="color:white"> This movie is not released yet. Stay tuned! </h1>
+      </div>
+      {% else %}
+      <div style="color:white;">
+        <h1 style="color:white"> Sorry, the reviews for this movie are not available! :( </h1>
+      </div>
+      {% endif %}
     {% else %}
-    <div style="color:white">
-        <h1 style="color:black"> This movie is not released yet. Stay tuned! </h1>
-    </div>
+      <div style="color:white;">
+        <h1 style="color:white"> Sorry, the reviews for this movie are not available! :( </h1>
+      </div>
     {% endif %}
-</center>
-{% if movie_cards | length > 1 %}
-<div class="movie" style="color: #E8E8E8;">
-    <center>
-        <h3>RECOMMENDED MOVIES FOR YOU</h3>
-        <h5>(Click any of the movies to get recommendation)</h5>
-    </center>
-</div>
-<div class="movie-content">
-    {% for poster, title in movie_cards.items() if not movie_cards.hidden %}
-    <div class="card" style="width:15rem" ; title="{{title}}" onclick="recommendcard(this)">
-        <div class="imghvr">k;
-            <img src="card-img-top" height="360" width="240" alt="{{title}} - Poster" src={{poster}}>
-            <figcaption class="fig">
+  </center>
+  <br>
+{% if movie_cards|length > 1 %}
+
+      <div class="movie" style="color: #E8E8E8;">
+        <center><h2 style="font-family: 'Rowdies', cursive;">RECOMMENDED MOVIES FOR YOU</h2><h5>(Click any of the movies to get recommendation)</h5></center>
+      </div>
+
+      <div class="movie-content">
+        {% for poster, details in movie_cards.items() if not movie_cards.hidden %}
+          <div class="card" style="width: 14rem;" title="{{details[1]}}" onclick="recommendcard(this)">
+            <div class="imghvr">
+              <img class="card-img-top" height="360" width="240" alt="{{details[0]}} - poster" src={{poster}}>
+              <div class="card-img-overlay" >
+                <span class="card-text" style="font-size:15px;background: #000000b8;color:white;padding:2px 5px;border-radius: 10px;"><span class="fa fa-star checked">&nbsp; {{details[2]}}/10</span></span>
+              </div>
+              <div class=".card-img-overlay" style="position: relative;">
+                <span class="card-text" style="font-size:15px;position:absolute;bottom:20px;left:15px;background: #000000b8;color:white;padding: 5px;border-radius: 10px;">{{details[3]}}</span>
+              </div>
+              <figcaption class="fig">
                 <button class="card-btn btn btn-danger"> Click Me </button>
-            </figcaption>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">{{title|capitalize}} </h5>
-        </div>
-    </div>
-    {% endfor %}
-</div>
-{% endif %}
+              </figcaption>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" style="font-family: 'Rowdies', cursive;font-size: 17px;">{{details[0]|upper}}</h5>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+<br/><br/><br/><br/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='recommend.js') }}"></script>

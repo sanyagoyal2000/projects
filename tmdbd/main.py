@@ -3,11 +3,12 @@ import pandas as pd
 from flask import Flask, render_template, request
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import json, pickle, requests
+import json
 import bs4 as bs
+import urllib.request
 import pickle
 import requests
-import urllib.request
+from datetime import date, datetime
 
 def create_similarity():
     data = pd.read_csv('data.csv')
@@ -116,7 +117,8 @@ def recommend():
     return render_template('contentBlock.html', title=title, poster=poster, overview=overview, vote_average=vote_average,
     vote_count=vote_count, release_date=release_date, runtime=runtime, status=status, genres=genres,
     movie_cards=movie_cards, casts=casts, cast_details=cast_details)
-
+    
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
