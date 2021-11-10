@@ -5,27 +5,30 @@
   }
   
  
-  
-
-  ::-webkit-scrollbar {
-    width: 15px;
-  }
-  
-  /* Track */
   ::-webkit-scrollbar-track {
     border-radius: 10px;
   }
    
-  /* Handle */
+ 
   ::-webkit-scrollbar-thumb {
+<<<<<<< HEAD:cmdb/static/style.css
     background: rgb(247, 171, 72); 
     border-radius: 10px;
+=======
+    background: #EAEDED; 
+    border-radius: 0px;
+>>>>>>> 018a627d8bb30b6e27c2d0f7647b6486f9758af0:tmdbd/static/style.css
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
+<<<<<<< HEAD:cmdb/static/style.css
     background: #ee128b; 
+=======
+    background: #CCD1D1; 
+>>>>>>> 018a627d8bb30b6e27c2d0f7647b6486f9758af0:tmdbd/static/style.css
   }
+  
   .movie {
       color: rgb(243, 81, 81);
       margin-left: auto;
@@ -118,7 +121,8 @@ h1 {
 
 #name {
     color: black;
-    
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
     padding: 1px;
     font-weight: bold;
 }
@@ -318,5 +322,13 @@ h6 {
     font-size: 50px;
     text-transform: uppercase;
 
+<<<<<<< HEAD:cmdb/static/style.css
+=======
+
+.movie_title {
+    font-size: 40px;
+    /*color: #ffffff;*/
+>>>>>>> 018a627d8bb30b6e27c2d0f7647b6486f9758af0:tmdbd/static/style.css
 }
+
 
