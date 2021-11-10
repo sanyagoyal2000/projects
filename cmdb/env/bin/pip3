@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/Users/sanyagoyal/Desktop/sanya/DTU/Third year/sem 5/Projects/MDA Project/The-Movie-Cinema/env/bin/python3" "$0" "$@"
-' '''
+#!/Users/sanyagoyal/Downloads/movie-recommendation-main/env/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
