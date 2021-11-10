@@ -10,6 +10,9 @@ import pickle
 import requests
 from datetime import date, datetime
 
+filename = 'nlp_model.pkl'
+clf = pickle.load(open(filename, 'rb'))
+vectorizer = pickle.load(open('tranform.pkl','rb'))
 def create_similarity():
     data = pd.read_csv('main_data.csv')
     # count matrix
@@ -113,10 +116,32 @@ def recommend():
 
     cast_details = {cast_names[i]:[cast_ids[i], cast_profiles[i], cast_bdays[i], cast_places[i], cast_bios[i]] for i in range(len(cast_places))}
     print("cast_details: ", cast_details)
+    
+    # web scraping to get user reviews from IMDB site
+    req = urllib.request.Request('https://www.imdb.com/title/{}/reviews?ref_=tt_ov_rt'.format(imdb_id))
+# Customize the default User-Agent header value:
+    req.add_header('User-Agent', 'Mozilla/5.0')
+    r = urllib.request.urlopen(req)
+    soup = bs.BeautifulSoup(r.read(),"html.parser")
 
-    return render_template('contentBlock.html', title=title, poster=poster, overview=overview, vote_average=vote_average,
-    vote_count=vote_count, release_date=release_date, runtime=runtime, status=status, genres=genres,
-    movie_cards=movie_cards, casts=casts, cast_details=cast_details)
+    soup_result = soup.find_all("div",{"class":"text show-more__control"})
+
+    reviews_list = [] # list of reviews
+    reviews_status = [] # list of comments (good or bad)
+    for reviews in soup_result:
+        if reviews.string:
+            reviews_list.append(reviews.string)
+            # passing the review to our model
+            movie_review_list = np.array([reviews.string])
+            movie_vector = vectorizer.transform(movie_review_list)
+            pred = clf.predict(movie_vector)
+            reviews_status.append('Good' if pred else 'Bad')
+
+    # combining reviews and comments into a dictionary
+    movie_reviews = {reviews_list[i]: reviews_status[i] for i in range(len(reviews_list))}     
+    return render_template('contentBlock.html', title=title,poster=poster,overview=overview,vote_average=vote_average,
+        vote_count=vote_count,release_date=release_date,runtime=runtime,status=status,genres=genres,
+        movie_cards=movie_cards,reviews=movie_reviews,casts=casts,cast_details=cast_details)
     
     
 
