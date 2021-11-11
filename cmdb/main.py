@@ -14,7 +14,7 @@ filename = 'nlp_model.pkl'
 clf = pickle.load(open(filename, 'rb'))
 vectorizer = pickle.load(open('tranform.pkl','rb'))
 def create_similarity():
-    data = pd.read_csv('main_data.csv')
+    data = pd.read_csv('data.csv')
     # count matrix
     cv = CountVectorizer()
     count_matrix = cv.fit_transform(data['comb'])
@@ -146,4 +146,4 @@ def recommend():
     
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=8000)
